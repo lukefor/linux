@@ -151,34 +151,44 @@
 		status = "disabled";
 	};
 
-	efusekey: efusekey {
-		keynum = <4>;
+	//efusekey: efusekey {
+	//	keynum = <4>;
+	//	key0 = <&key_0>;
+	//	key1 = <&key_1>;
+	//	key2 = <&key_2>;
+	//	key3 = <&key_3>;
+	//
+	//	key_0: key_0 {
+	//		keyname = "mac";
+	//		offset = <0>;
+	//		size = <6>;
+	//	};
+	//	key_1: key_1 {
+	//		keyname = "mac_bt";
+	//		offset = <6>;
+	//		size = <6>;
+	//	};
+	//	key_2: key_2 {
+	//		keyname = "mac_wifi";
+	//		offset = <12>;
+	//		size = <6>;
+	//	};
+	//	key_3: key_3 {
+	//		keyname = "usid";
+	//		offset = <18>;
+	//		size = <16>;
+	//	};
+	//};
+	
+	efusekey:efusekey{
+		keynum = <1>;
 		key0 = <&key_0>;
-		key1 = <&key_1>;
-		key2 = <&key_2>;
-		key3 = <&key_3>;
-
-		key_0: key_0 {
+		key_0:key_0{
 			keyname = "mac";
 			offset = <0>;
-			size = <6>;
+			size = <12>;
 		};
-		key_1: key_1 {
-			keyname = "mac_bt";
-			offset = <6>;
-			size = <6>;
-		};
-		key_2: key_2 {
-			keyname = "mac_wifi";
-			offset = <12>;
-			size = <6>;
-		};
-		key_3: key_3 {
-			keyname = "usid";
-			offset = <18>;
-			size = <16>;
-		};
-	};
+	};//End efusekey
 
 	mfh: mfh {
 		compatible = "amlogic, mfh";
@@ -612,7 +622,7 @@
 
 	aml_wifi: aml_wifi {
 		compatible = "amlogic, aml-wifi";
-		status = "disabled";
+		status = "okay";
 		irq_trigger_type = "GPIO_IRQ_LOW";
 		dhd_static_buf; //if use bcm wifi, config dhd_static_buf
 		//pinctrl-0 = <&pwm_e_pins>;
@@ -689,17 +699,17 @@
 			thermal-sensors = <&p_tsensor 0>;
 			trips {
 				pswitch_on: trip-point@0 {
-					temperature = <60000>;
+					temperature = <65000>;
 					hysteresis = <2000>;
 					type = "passive";
 				};
 				pcontrol: trip-point@1 {
-					temperature = <75000>;
+					temperature = <80000>;
 					hysteresis = <2000>;
 					type = "passive";
 				};
 				phot: trip-point@2 {
-					temperature = <85000>;
+					temperature = <90000>;
 					hysteresis = <5000>;
 					type = "hot";
 				};
@@ -712,7 +722,7 @@
 			cooling-maps {
 				cpufreq_cooling_map {
 					trip = <&pcontrol>;
-					cooling-device = <&cpu0 0 11>;
+					cooling-device = <&cpu0 0 14>;
 					contribution = <1024>;
 				};
 				cpucore_cooling_map {
@@ -823,7 +833,14 @@
 	dummy_codec:dummy{
 		#sound-dai-cells = <0>;
 		compatible = "amlogic, aml_dummy_codec";
+		status = "okay";
 	};
+	dummy_codec2:dummy{
+		#sound-dai-cells = <0>;
+		compatible = "amlogic, aml_dummy_codec";
+		status = "okay";
+	};
+
 
 	amlogic_codec:t9015{
 		#sound-dai-cells = <0>;
@@ -920,6 +937,8 @@
 
 			/*tdm clk tuning enable*/
 			clk_tuning_enable = <1>;
+
+			status = "disabled";
 		};
 
 		tdmc: tdm@2 {
@@ -938,7 +957,7 @@
 			//pinctrl-0 = <&tdmc_mclk &tdmout_c &tdmin_c>;
 			mclk_pad = <0>;  /* 0: mclk_0; 1: mclk_1 */
 
-			status = "okay";
+			status = "disabled";
 		};
 
 		spdifa: spdif@0 {
@@ -962,7 +981,7 @@
 			/*spdif clk tuning enable*/
 			clk_tuning_enable = <1>;
 
-			status = "okay";
+			status = "disabled";
 		};
 		spdifb: spdif@1 {
 			compatible = "amlogic, sm1-snd-spdif-b";
@@ -973,7 +992,7 @@
 			clock-names = "sysclk",
 					"gate_spdifout", "clk_spdifout";
 
-			status = "okay";
+			status = "disabled";
 		};
 		apdm: pdm {
 			compatible = "amlogic, sm1-snd-pdm";
@@ -1001,9 +1020,9 @@
 			filter_mode = <1>;
 			train_sample_count = <0x2>;
 
-			status = "okay";
+			status = "disabled";
 		};
-
+/*
 		earc {
 			compatible = "amlogic, sm1-snd-earc";
 			#sound-dai-cells = <0>;
@@ -1026,9 +1045,9 @@
 			>;
 			interrupt-names = "rx_cmdc", "rx_dmac";
 
-			status = "okay";
+			status = "disabled";
 		};
-
+*/
 		asrca: resample@0 {
 			compatible = "amlogic, sm1-resample";
 			clocks = <&clkc CLKID_MPLL3
@@ -1279,7 +1298,7 @@
 			interrupt-names = "earc_rx";
 		};
 	};
-
+	
 	/* Sound iomap */
 	aml_snd_iomap {
 		compatible = "amlogic, snd-iomap";
