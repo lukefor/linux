@@ -784,8 +784,7 @@
 		<720000 100>;
 };
 
-/* open this comment for ext phy
- *&ext_mdio {
+&ext_mdio {
 	external_phy: ethernet-phy@0 {
 		reg = <0>;
 		max-speed = <1000>;
@@ -806,13 +805,13 @@
 	phy-mode = "rgmii";
 	phy-handle = <&external_phy>;
 	amlogic,tx-delay-ns = <2>;
-};
-*/
+	
+	mc_val = <0x1629>;
 
-&ethmac {
-	status = "okay";
-	phy-handle = <&internal_ephy>;
-	phy-mode = "rmii";
+	cali_val = <0x60000>;
+	rx_delay = <1>;
+	auto_cali_idx = <0>;
+	internal_phy=<0>;
 };
 
 &fb {

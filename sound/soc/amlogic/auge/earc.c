@@ -1311,12 +1311,12 @@ static struct snd_soc_dai_driver earc_dai[] = {
 	{
 		.name     = "EARC/ARC",
 		.id       = 0,
-		.playback = {
+	/*	.playback = {
 		      .channels_min = 1,
 		      .channels_max = 32,
 		      .rates        = EARC_RATES,
 		      .formats      = EARC_FORMATS,
-		},
+		},*/
 		.capture = {
 		     .channels_min = 1,
 		     .channels_max = 32,
