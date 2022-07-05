@@ -797,10 +797,10 @@
 		dev_name = "aocec";
 		status = "okay";
 		vendor_name = "Amlogic"; /* Max Chars: 8     */
-		vendor_id = <0xffffff>;
+		vendor_id = <0x000000>;
 		product_desc = "SM1"; /* Max Chars: 16    */
 		cec_osd_string = "AML_MBOX"; /* Max Chars: 14    */
-		cec_version = <5>;/*5:1.4;6:2.0*/
+		cec_version = <6>;/*5:1.4;6:2.0*/
 		port_num = <1>;
 		output = <1>;
 		cec_sel = <1>;/*1:use one ip, 2:use 2 ip*/

@@ -3050,6 +3050,10 @@ int __init cec_init(void)
 {
 	int ret;
 
+	CEC_INFO("Hello yes this is cec\n");
+#ifdef CONFIG_OF
+	CEC_INFO("cec CONFIG_OF\n");
+#endif
 	ret = platform_driver_register(&aml_aocec_driver);
 
 	return ret;
